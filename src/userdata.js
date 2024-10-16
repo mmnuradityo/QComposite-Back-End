@@ -20,15 +20,12 @@ const getAccountType = (email) => {
 
 const validate = (email, password, appID) => {
     if (password !== passwordRaw) {
-        console.log("password validate" + password)
         return false;
     }
     if (email === adminRawEmail) {
-        console.log("admin validate")
         return true;
     } else if (email === agentRawEmail || email === spvRawEmail) {
-        console.log(email + "validate")
-        return appID !== null && appID === appIDRaw
+        return appID !== null && appID === appIDRaw;
     }
 
     return false;

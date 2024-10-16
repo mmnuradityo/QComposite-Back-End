@@ -2,7 +2,7 @@ const Hapi = require('@hapi/hapi');
 const { getUser, validate } = require('./userdata');
 
 const port = 5000;
-const developmentHost = '192.168.43.152';
+const developmentHost = 'localhost';
 const productionpHost = '0.0.0.0';
 
 const getHost = () => process.env.NODE_ENV !== 'production' ? developmentHost : productionpHost;
@@ -19,13 +19,7 @@ const init = async () => {
             path: '/login-mobile',
             handler: async (request, h) => {
                 const { email, password, appID } = request.payload;
-
-                console.log(`
-                    email: ${email},
-                    password: ${password},
-                    appID: ${appID},
-                    `)
-
+                
                 var response;
                 if (validate(email, password, appID)) {
                     response = h.response({
